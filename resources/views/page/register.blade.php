@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layout.master')
 
-</head>
-<body>
-
+@section('judul')
 <h1>Buat Account Baru</h1>
+@endsection
+
+@section('content')
 <form action="/dashboard" method="POST">
     @csrf
     <label>Nama Depan:</label> <br>
@@ -33,7 +32,6 @@
     <textarea name="message" id="" rows="10"cols="30" required></textarea><br><br>
    
     <button type="submit" >Sign up</button>
-
 </form>
-</body>
-</html>
+
+@endsection

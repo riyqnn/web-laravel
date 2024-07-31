@@ -20,3 +20,17 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/register', [AuthController::class, 'register']);
 
 Route::post('/dashboard', [AuthController::class, 'utama']);
+
+Route::get('/table', function () {
+    return view('layout.table');
+});
+
+Route::get('/data-tables', function () {
+    return view('layout.data-tables');
+});
+
+
+Route::get('/master',function () {
+    return view('layout.master');
+});
+
