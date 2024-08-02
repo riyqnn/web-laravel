@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +10,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post', function (Blueprint $table) {
+        Schema::create('film', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->text('content');
-            $table->string('thumbnail')->nullable();
-            $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade')->onUpdate('cascade');
+            $table->text('ringkasan');
+            $table->integer('tahun');
+            $table->string('poster');
+            $table->unsignedBigInteger('film_id');
+            $table->foreign('film_id')->references('id')->on('film')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('film');
     }
 };
