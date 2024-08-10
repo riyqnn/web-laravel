@@ -2,10 +2,15 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{('/template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCX5TOKkOk3MBt8V-f8PbmGrdLHCi4BoUOs_yuZ1pekOp8U_yWcf40t66JZ4_e_JYpRTOVCl0m8ozEpLrs9Ip2Cm7kQz4fUnUFh8Jcv8fMFfPbfbyWEEKne0S9e_U6fWEmcz0oihuJM6sP1cGFqdJZbLjaEQnGdgJvcxctqhMbNw632OKuAMBMwL86/w640-h596/pp%20kosong%20wa%20default.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        @auth
+        <a href="#" class="d-block">{{Auth::user()->name }}</a>
+        @endauth
+        @guest
+        <a href="#" class="d-block">anda belum login</a>
+        @endguest
       </div>
     </div>
 
@@ -28,15 +33,28 @@
              with font-awesome or any other icon font library -->
          <li class="nav-item">
             <a href="/" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+          </li> 
+          <li class="nav-item">
+            <a href="/film" class="nav-link">
                   <p>
-                    Dashboard
+                    Film
                   </p>
                 </a>
-              </li>
+              </li> <li class="nav-item">
+                <a href="/genre" class="nav-link">
+                      <p>
+                        Genre
+                      </p>
+                    </a>
+                  </li>    
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-th"></i>
             <p>
               Table
               <i class="right fas fa-angle-left"></i>
@@ -55,14 +73,33 @@
                 <p>Data Table </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="/register" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Register </p>
-              </a>
-            </li>
           </ul>
         </li>
+
+            @auth
+            <li class="nav-item bg-danger">
+              <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                 {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
+               @csrf
+             </form>
+          </li>   
+            @endauth  
+            
+            @guest
+            <li class="nav-item bg-primary">
+              <a href="/login" class="nav-link">
+                <i class="nav-icon"></i>
+                    <p>
+                      Login
+                    </p>
+                  </a>
+                </li>   
+            @endguest
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

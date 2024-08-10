@@ -6,7 +6,7 @@
 
 @section('content')
 
-<form action="/kategori/{{$cast->id}}" method="POST">
+<form action="/cast/{{$cast->id}}" method="POST">
     @csrf
     @method('put')
     <div class="form-group">

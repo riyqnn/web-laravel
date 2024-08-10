@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CastController;
-
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ReviewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,3 +51,19 @@ Route::get('/cast/{cast_id}/edit', [CastController::class, 'edit']);
 Route::put('/cast/{cast_id}', [CastController::class, 'update']);
 
 Route::delete('/cast/{cast_id}', [CastController::class, 'destroy']);
+
+Route::resource('film', FilmController::class);
+
+//
+
+Route::middleware(['auth'])->group(function () {
+
+Route::resource('genre', GenreController::class);
+
+Route::post('/review/{film_id}', [ReviewController::class, 'store']);
+
+});
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

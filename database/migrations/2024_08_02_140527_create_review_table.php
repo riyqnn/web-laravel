@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kritik', function (Blueprint $table) {
+        Schema::create('review', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('film_id');
-            $table->text('content');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('film_id')->nullable();
+            $table->text('content')->nullable();
             $table->integer('point');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('film_id')->references('id')->on('film')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kritik');
+        Schema::dropIfExists('review');
     }
 };

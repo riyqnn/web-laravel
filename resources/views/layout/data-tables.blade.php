@@ -449,8 +449,6 @@
       <th>CSS grade</th>
     </tr>
     </tfoot>
-  </table>
-</div>
-<!-- /.card-body -->
-</div>     
+</table>
+   
 @endsection

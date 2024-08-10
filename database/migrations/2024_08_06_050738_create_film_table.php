@@ -16,8 +16,8 @@ return new class extends Migration
             $table->text('ringkasan');
             $table->integer('tahun');
             $table->string('poster');
-            $table->unsignedBigInteger('film_id');
-            $table->foreign('film_id')->references('id')->on('film')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('genre_id');
+            $table->foreign('genre_id')->references('id')->on('genre')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
